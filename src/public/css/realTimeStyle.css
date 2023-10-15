@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    text-align: center;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#idForm{
+    margin-top: 10px;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+}
+
+.submit{
+    margin: 10px;
+    border: none;
+    padding: 5px;
+    background-color: chartreuse;
+    border-radius: 5px;
+}
+
+.prodContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.prods{
+    border: 1px black solid;
+    width: 300px;
+    margin: 5px;
+}
