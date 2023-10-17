@@ -31,8 +31,8 @@ const InitializePassport = () => {
     }
   }))
 
-  passport.use("signup",new LocalStrategy({usernameField: "email",passReqToCallback: true,},
-      async (req, username, password, done) => {
+  passport.use("register",new LocalStrategy({usernameField: "email",passReqToCallback: true},
+      async (req,username, password, done) => {
         const { first_name, last_name, email, age } = req.body;
         try {
           //buscar usuario
@@ -46,7 +46,7 @@ const InitializePassport = () => {
           }
 
           //crear usuario
-          const hashPass = await createHash(password);
+          const hashPass = createHash(password);
           console.log(hashPass);
           const createUser = await userManager.create({
             first_name,

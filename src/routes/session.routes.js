@@ -1,7 +1,7 @@
 import { Router } from "express";
 import passport from 'passport';
 import { passportError, authorization } from "../utils/messageError.js";
-import { generateToken, authToken } from "../utils/jwt.js";
+import { generateToken } from "../utils/jwt.js";
 
 const sessionRouter = Router()
 
@@ -63,6 +63,25 @@ sessionRouter.post('/login', passport.authenticate('login',{failureRedirect: 'fa
         res.status(500).send({ mensaje: `Error al iniciar sesion ${error}` });
     }
 });
+
+sessionRouter.post('/register', passport.authenticate('register'), async (req, res) => {
+    try {
+        if (!req.user) {
+            return res.status(400).send({ mensaje: "Usuario existente" })
+        }
+
+        await handleSuccessfulLogin(req, res, req.user);
+        res.status(200).json({
+            redirectTo: '/home',
+            payload: req.session.passport,
+            firstLogin: true
+        });
+
+    } catch (error) {
+        res.status(500).send({ mensaje: `Error al registrar el usuario ${error}` })
+    }
+
+})
 
 sessionRouter.get('/faillogin', (req, res) => {
     console.log('Error al iniciar sesión');

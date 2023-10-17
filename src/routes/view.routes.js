@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { productManager } from "../dao/models/productsManager.js";
 import { CartManager } from "../dao/models/cartManager.js";
-import { passportError, authorization } from "../utils/messagesError.js";
+import { passportError, authorization } from "../utils/messageError.js";
 
 const viewRouter = Router()
 
